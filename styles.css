@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background-color: black; /* ตั้งค่าพื้นหลังให้เป็นสีดำ */
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: white;
+}
+
+h1 {
+    font-size: 5em; /* ขนาดตัวอักษรเพิ่มขึ้น */
+    border: 2px solid white; /* กรอบสีขาว */
+    padding: 20px; /* ระยะห่างระหว่างตัวอักษรกับกรอบ */
+    border-radius: 10px; /* มุมกรอบโค้งมน */
+}
+
+.big-button {
+    font-size: 1.5em; /* ขนาดตัวอักษรของปุ่ม */
+    padding: 15px 30px; /* ขนาด padding ของปุ่ม */
+    background-color: #ff69b4; /* เปลี่ยนสีพื้นหลังให้เป็นสีชมพู */
+    color: white; /* เปลี่ยนสีตัวอักษรเป็นสีขาว */
+    border: none; /* ไม่มีกรอบ */
+    border-radius: 10px; /* ทำมุมให้โค้งมน */
+    cursor: pointer; /* แสดงรูปมือเมื่อชี้ที่ปุ่ม */
+    transition: transform 0.3s; /* เพิ่มการเปลี่ยนแปลงเมื่อ hover */
+}
+
+.big-button:hover {
+    transform: scale(1.05); /* ขยายขนาดเมื่อ hover */
+}
+
+.next-btn {
+    font-size: 1.5em; /* ขนาดตัวอักษรของปุ่ม Next */
+    padding: 15px 30px; /* ขนาด padding ของปุ่ม Next */
+    background-color: #ff69b4; /* เปลี่ยนสีพื้นหลังให้เป็นสีชมพู */
+    color: white; /* เปลี่ยนสีตัวอักษรเป็นสีขาว */
+    border: none; /* ไม่มีกรอบ */
+    border-radius: 10px; /* ทำมุมให้โค้งมน */
+    cursor: pointer; /* แสดงรูปมือเมื่อชี้ที่ปุ่ม */
+    transition: transform 0.3s; /* เพิ่มการเปลี่ยนแปลงเมื่อ hover */
+}
+
+.next-btn:hover {
+    transform: scale(1.05); /* ขยายขนาดเมื่อ hover */
+}
+
+.hidden {
+    display: none;
+}
+
+#final-message {
+    background-color: pink;
+}
