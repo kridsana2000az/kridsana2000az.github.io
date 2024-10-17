@@ -8,7 +8,7 @@ const nextButtons = document.querySelectorAll('.next-btn');
 nextButtons.forEach((button, index) => {
     button.addEventListener('click', function() {
         if (currentScreen === 7) { // ถ้ากดที่ปุ่มในหน้าสุดท้าย
-            window.open('https://youtu.be/zzyDz6jhX30?si=bd65lPmhiZ-5n0xh', '_blank'); // เปลี่ยน YOUR_VIDEO_ID เป็น ID ของเพลง
+            window.open('https://youtu.be/2DXwy2aSwPI?si=N_N9Kjp7zs6DmQUe', '_blank'); // เปลี่ยน YOUR_VIDEO_ID เป็น ID ของเพลง
         } else {
             changeScreen(index + 2);
         }
