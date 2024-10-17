@@ -5,7 +5,10 @@ body {
     align-items: center;
     height: 100vh;
     font-family: Arial, sans-serif;
-    background-color: black; /* ตั้งค่าพื้นหลังให้เป็นสีดำ */
+    background-color: black; 
+    background: linear-gradient(270deg, #ff7eb3, #ff65a3, #ff80b5, #ff9fb0);
+    background-size: 800% 800%;
+    animation: gradientAnimation 15s ease infinite; /* พื้นหลังไล่สีเคลื่อนไหว */
 }
 
 .screen {
@@ -20,25 +23,25 @@ body {
 }
 
 h1 {
-    font-size: 5em; /* ขนาดตัวอักษรเพิ่มขึ้น */
-    border: 2px solid white; /* กรอบสีขาว */
-    padding: 20px; /* ระยะห่างระหว่างตัวอักษรกับกรอบ */
-    border-radius: 10px; /* มุมกรอบโค้งมน */
+    font-size: 5em; 
+    border: 2px solid white;
+    padding: 20px; 
+    border-radius: 10px; 
 }
 
 .big-button, .next-btn {
-    font-size: 1.5em; /* ขนาดตัวอักษรของปุ่ม */
-    padding: 15px 30px; /* ขนาด padding ของปุ่ม */
-    background-color: #ff69b4; /* เปลี่ยนสีพื้นหลังให้เป็นสีชมพู */
-    color: white; /* เปลี่ยนสีตัวอักษรเป็นสีขาว */
-    border: none; /* ไม่มีกรอบ */
-    border-radius: 10px; /* ทำมุมให้โค้งมน */
-    cursor: pointer; /* แสดงรูปมือเมื่อชี้ที่ปุ่ม */
-    transition: transform 0.3s; /* เพิ่มการเปลี่ยนแปลงเมื่อ hover */
+    font-size: 1.5em; 
+    padding: 15px 30px;
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer; 
+    transition: transform 0.3s;
 }
 
 .big-button:hover, .next-btn:hover {
-    transform: scale(1.05); /* ขยายขนาดเมื่อ hover */
+    transform: scale(1.05); 
 }
 
 .hidden {
@@ -47,6 +50,43 @@ h1 {
 
 #final-message {
     background-color: pink;
+}
+
+#hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    overflow: hidden;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Fireworks */
+.firework {
+    width: 10px;
+    height: 10px;
+    background-color: yellow;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    animation: fireworkUp 1s ease-out forwards;
+}
+
+@keyframes fireworkUp {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100vh); }
 }
 
 /* Media Query สำหรับหน้าจอขนาดเล็ก (โทรศัพท์) */
@@ -61,7 +101,12 @@ h1 {
         padding: 10px 20px; /* ลด padding ของปุ่ม */
     }
 
-    .screen {
-        padding: 20px; /* เพิ่ม padding ให้หน้าจอ */
+    #hearts-container {
+        font-size: 20px; /* ลดขนาดของหัวใจสำหรับโทรศัพท์ */
+    }
+
+    .firework {
+        width: 5px; /* ขนาดเล็กลงสำหรับโทรศัพท์ */
+        height: 5px; 
     }
 }

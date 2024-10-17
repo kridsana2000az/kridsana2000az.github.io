@@ -1,16 +1,19 @@
 let currentScreen = 0;
 
 document.getElementById('start-btn').addEventListener('click', function() {
+    startMusic(); // เริ่มเล่นเพลง
     changeScreen(1);
+    startHeartAnimation(); // เริ่มหัวใจลอยขึ้นที่หน้าจอแรก
 });
 
 const nextButtons = document.querySelectorAll('.next-btn');
 nextButtons.forEach((button, index) => {
     button.addEventListener('click', function() {
-        if (currentScreen === 7) { // ถ้ากดที่ปุ่มในหน้าสุดท้าย
-            window.open('https://youtu.be/2DXwy2aSwPI?si=N_N9Kjp7zs6DmQUe', '_blank'); // เปลี่ยน YOUR_VIDEO_ID เป็น ID ของเพลง
+        if (currentScreen === 7) { // หน้าสุดท้าย
+            launchFireworks(); // ปล่อยดอกไม้ไฟในหน้าสุดท้าย
         } else {
             changeScreen(index + 2);
+            if (index === 0) { startSparkles(); } // เพิ่มประกายระยิบระยับเมื่อถึงหน้าจอกลาง
         }
     });
 });
@@ -21,27 +24,61 @@ function changeScreen(screenIndex) {
     screens[screenIndex].classList.remove('hidden');
     currentScreen = screenIndex;
 
-    if (screenIndex === 7) { // หน้าสุดท้าย
-        startHeartAnimation();
+    // เรียกใช้ฟังก์ชันเพื่อแสดงหัวใจและดอกไม้ไฟในหน้าสุดท้าย
+    if (screenIndex === 7) { // ถ้าเป็นหน้าสุดท้าย
+        startHeartAnimation(); // เริ่มหัวใจลอยขึ้น
+        launchFireworks(); // ปล่อยดอกไม้ไฟ
     }
 }
 
 function startHeartAnimation() {
     const heartsContainer = document.getElementById('hearts-container');
-    heartsContainer.innerHTML = ''; // ล้างหัวใจเก่า
+    heartsContainer.innerHTML = ''; 
 
     setInterval(() => {
         const heart = document.createElement('span');
         heart.innerHTML = '❤️';
         heart.style.position = 'absolute';
-        heart.style.fontSize = Math.random() * 50 + 20 + 'px'; // ขนาดสุ่ม
-        heart.style.top = Math.random() * 100 + 'vh'; // ตำแหน่งแนวตั้งสุ่ม
-        heart.style.left = Math.random() * 100 + 'vw'; // ตำแหน่งแนวนอนสุ่ม
+        heart.style.fontSize = Math.random() * 30 + 10 + 'px'; 
+        heart.style.top = '100vh'; 
+        heart.style.left = Math.random() * 100 + 'vw'; 
+        heart.style.animation = 'floatUp 5s linear infinite'; 
         heartsContainer.appendChild(heart);
         
-        // ทำให้หัวใจหายไปหลังจาก 2 วินาที
         setTimeout(() => {
             heart.remove();
-        }, 2000);
-    }, 20); // สร้างหัวใจทุก 200 มิลลิวินาที
+        }, 5000);
+    }, 300); 
+}
+
+function startSparkles() {
+    document.body.classList.add('sparkle-bg'); // เพิ่มคลาสสำหรับพื้นหลังแบบประกายระยิบระยับ
+}
+
+function launchFireworks() {
+    const fireworkContainer = document.getElementById('firework-container');
+    fireworkContainer.innerHTML = ''; // ล้างพลุเก่า
+
+    setInterval(() => {
+        const firework = document.createElement('div');
+        firework.className = 'firework';
+        firework.style.left = Math.random() * 100 + 'vw';
+        fireworkContainer.appendChild(firework);
+
+        setTimeout(() => {
+            firework.remove();
+        }, 1000);
+    }, 500); // ปล่อยพลุทุกๆ 500 มิลลิวินาที
+}
+
+// ฟังก์ชันสำหรับเปิดเพลงผ่าน iframe
+function startMusic() {
+    const player = document.getElementById('youtube-player');
+    player.classList.remove('hidden');
+
+    const iframe = document.getElementById('ytplayer');
+    const playerURL = iframe.src; // เก็บ URL ของ iframe
+    iframe.src = playerURL; // รีเซ็ต src เพื่อเริ่มเล่นใหม่
+
+    console.log("Music starting..."); // ตรวจสอบการเรียกใช้งาน
 }
